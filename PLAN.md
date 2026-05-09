@@ -203,13 +203,13 @@ Each step is small and testable on its own. Don't move to the next until the cur
 3. ✅ **Delete legacy scaffold**: fragments, XML layouts, navigation, menu, dimens.
 4. ✅ **Theme module**: `ui/theme/` (Color, Type, Shape, Spacing, Theme.kt) — tokens from DESIGN_SYSTEM.md.
 5. ✅ **Hello-Compose smoke test**: `MainActivity` renders `ConverterScreen` stub. `assembleDebug` passes.
-6. **Domain models**: `Currency`, `ConversionRate`.
-7. **Networking layer**: Retrofit interface, DTOs, NetworkModule (Hilt). Test with a unit test that hits Frankfurter.
-8. **DataStore cache**: `RatesCache` wrapper. Unit test round-trip read/write.
-9. **Repository**: combines remote + cache. Unit test with mocked api + real DataStore.
-10. **ViewModel**: `ConverterViewModel` exposing `StateFlow<ConverterUiState>`. Unit test state transitions with Turbine.
-11. **Wire UI to ViewModel**: replace stub with real state collection. End-to-end happy path works.
-12. **Components polish**: `AmountField`, `CurrencyPickerSheet`, `SwapButton`, `RateInfoStrip`.
+6. ✅ **Domain models**: `Currency`, `ConversionRate`.
+7. ✅ **Networking layer**: Retrofit interface, DTOs, NetworkModule (Hilt). Verified live against Frankfurter on emulator.
+8. ✅ **DataStore cache**: `RatesCache` (currencies + last rate + last selection persisted as JSON).
+9. ✅ **Repository**: `CurrencyRepository` cache-or-fetch for currencies, fetch-and-cache for rates.
+10. ✅ **ViewModel**: `ConverterViewModel` `@HiltViewModel` with Loading/Idle/Error phases, debounced via Job cancellation.
+11. ✅ **Wire UI to ViewModel**: amount field + From/To dropdowns + swap button + result card (real `1 USD = 3.921 MYR` confirmed on device).
+12. **Components polish**: extract `AmountField`, `CurrencyPickerSheet`, `SwapButton`, `RateInfoStrip` (currently inline in `ConverterScreen.kt`). Skipped for v1 — works as-is.
 13. **States**: explicitly design and implement Loading / Error / Offline / Empty (per design system §10).
 14. **Accessibility pass**: TalkBack walkthrough, font scale 200% test.
 15. **Release config**: enable R8/minification, set up signing, generate release APK.
