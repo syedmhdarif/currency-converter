@@ -198,11 +198,11 @@ Plugins to add:
 
 Each step is small and testable on its own. Don't move to the next until the current one runs on a device.
 
-1. **Git init** + initial commit of the current scaffold (so we can see exactly what we changed when migrating to Compose).
-2. **Migrate Gradle to Compose**: update version catalog, app `build.gradle.kts`, remove ViewBinding, add Compose BOM + plugins.
-3. **Delete legacy scaffold**: the three fragments, their XML layouts, `mobile_navigation.xml`, `bottom_nav_menu.xml`, `activity_main.xml`. Keep `MainActivity` (rewrite it to host Compose).
-4. **Theme module**: implement `ui/theme/` from `DESIGN_SYSTEM.md` tokens. Verify with a `Preview` of a `Surface` showing some text.
-5. **Hello-Compose smoke test**: `MainActivity` shows a single `ConverterScreen` stub with hardcoded UI. Run on emulator.
+1. ✅ **Git init** + initial commit of the current scaffold.
+2. ✅ **Migrate Gradle to Compose**: version catalog, plugins, BOM, dropped ViewBinding, JVM 17.
+3. ✅ **Delete legacy scaffold**: fragments, XML layouts, navigation, menu, dimens.
+4. ✅ **Theme module**: `ui/theme/` (Color, Type, Shape, Spacing, Theme.kt) — tokens from DESIGN_SYSTEM.md.
+5. ✅ **Hello-Compose smoke test**: `MainActivity` renders `ConverterScreen` stub. `assembleDebug` passes.
 6. **Domain models**: `Currency`, `ConversionRate`.
 7. **Networking layer**: Retrofit interface, DTOs, NetworkModule (Hilt). Test with a unit test that hits Frankfurter.
 8. **DataStore cache**: `RatesCache` wrapper. Unit test round-trip read/write.
@@ -219,10 +219,10 @@ Each step is small and testable on its own. Don't move to the next until the cur
 ## What's installed / configured already
 
 - ✅ Android Studio (project opens)
-- ✅ Android SDK 36 + JDK 17 (via `compileSdk = 36`, `jvmTarget = "11"` — we'll bump JVM to 17)
-- ✅ Gradle KTS build files
-- ❌ Git (project is not a git repo yet — `git init` pending)
-- ❌ Hilt, Compose, Retrofit, etc. (none installed yet)
+- ✅ Android SDK 36, JDK 17, Gradle 8.13, AGP 8.13.2, Kotlin 2.0.21
+- ✅ Git initialized, pushed to `github.com:syedmhdarif/currency-converter`
+- ✅ Compose, Hilt, Retrofit, OkHttp, kotlinx.serialization, DataStore, Coroutines (configured in `libs.versions.toml`)
+- ✅ KSP + Hilt + Compose compiler + serialization plugins applied
 
 ---
 
